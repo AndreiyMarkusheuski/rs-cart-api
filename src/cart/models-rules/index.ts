@@ -4,8 +4,15 @@ import { Cart, CartItem } from '../models';
  * @param {Cart} cart
  * @returns {number}
  */
+
+const ITEM_PRICE = 1;
 export function calculateCartTotal(cart: Cart): number {
-  return cart ? cart.items.reduce((acc: number, { product: { price }, count }: CartItem) => {
-    return acc += price * count;
-  }, 0) : 0;
+    return cart?.items
+        ? cart.items.reduce(
+            (acc: number, { count }: CartItem) => {
+                return (acc += ITEM_PRICE * count);
+            },
+            0,
+        )
+        : 0;
 }
